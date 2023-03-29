@@ -9,7 +9,7 @@ const Item = ({ item }: Iprops) => {
     const { name, thumbnailUrl, price } = item
 
     return (
-        <div style={{ display: 'block', cursor: 'pointer' }}>
+        <div style={{ flex: '1 0 21%', display: 'block', cursor: 'pointer' }}>
             <div>
                 <img alt={name} src={thumbnailUrl} style={{ width: "240px", height: "320px" }} />
             </div>

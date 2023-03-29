@@ -16,7 +16,6 @@ export interface IReponse {
   thumbnailUrl: string,
   price: number,
   currencyUnit: string
-
 }
 
 function App() {
@@ -48,19 +47,28 @@ function App() {
       setSearchData(DUMMY_DATA)
     }, 2000)
 
-  }, [searchParams, setSearchParams])
+  }, [searchParams])
 
   return (
     <div>
-      Walmart
-      <div>
+      <div style={{ backgroundColor: 'rgb(2,113,220)', height: 'auto', display: 'flex', justifyContent: 'center', padding: '25px' }}>
         <Searchbar setSearchParams={setSearchParams} />
       </div>
-      <div>
-        <ItemsContainer
-          isLoading={isLoading}
-          searchData={searchData} />
+
+      <div style={{ backgroundColor: 'rgb(2,113,220)', marginTop: '1px', height: '40px' }}>
+
       </div>
+      <div style={{ display: 'flex' }}>
+        <div style={{ width: '350px' }}>
+          Sidebar
+        </div>
+        <div style={{ width: '150vh', padding: '20px' }}>
+          <ItemsContainer
+            isLoading={isLoading}
+            searchData={searchData} />
+        </div>
+      </div>
+
     </div>
   );
 }

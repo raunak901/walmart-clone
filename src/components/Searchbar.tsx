@@ -1,4 +1,5 @@
 import { useRef } from "react"
+import SearchIcon from '@mui/icons-material/Search';
 
 const searchBoxStyles = {
     height: '40px',
@@ -8,15 +9,18 @@ const searchBoxStyles = {
     borderRadius: '9999px',
     borderStyle: 'none',
     fontSize: '16px',
-    display: 'flex'
+    display: 'block'
 }
 
 const buttonStyle = {
+    cursor: 'pointer',
     height: '35px',
     width: '35px',
     borderRadius: '9999px',
     borderStyle: 'none',
-    backgroundColor: '#ffc220'
+    backgroundColor: '#ffc220',
+    left: 562,
+    top: 2
 }
 
 interface ISearchParams {
@@ -29,22 +33,24 @@ const Searchbar = (props: ISearchParams) => {
     const { setSearchParams } = props
 
     const handleOnClick = () => {
-        searchText.current.value = null
         setSearchParams(searchText.current)
+        searchText.current.value = null
     }
 
     return (
         <>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', position: 'relative' }}>
                 <input
                     type='search'
                     ref={searchText}
                     style={searchBoxStyles}
                     placeholder='Search everything at Walmart online and in store' />
                 <button
-                    style={buttonStyle}
+                    style={{ ...buttonStyle, position: 'absolute' }}
                     type='submit'
-                    onClick={handleOnClick} />
+                    onClick={handleOnClick}>
+                    <SearchIcon />
+                </button>
             </div>
         </>
     )

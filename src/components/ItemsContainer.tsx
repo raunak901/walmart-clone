@@ -1,5 +1,7 @@
 import { IReponse } from '../App'
 import Item from './Item'
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 interface IProps {
     searchData: IReponse[]
@@ -12,9 +14,9 @@ const ItemsContainer = (props: IProps) => {
 
     return (
         <>
-            {isLoading && <div style={{ display: 'flex', justifyContent: 'center' }}>Loading...</div>}
+            {isLoading && <Box sx={{ display: 'flex' }}> <CircularProgress /></Box>}
             {!isLoading &&
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, width: '150vh', padding: '20px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
                     {searchData.map((item: IReponse) => {
                         return <Item key={item.id} item={item} />
                     })}
