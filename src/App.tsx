@@ -25,20 +25,16 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   async function fetchData(searchString: string) {
-    setIsLoading(true)
-    await axios.get(BASE_URL + searchString)
-      .then((response) => {
-        setSearchData(response.data)
-        setIsLoading(false)
-      })
-      .catch((error) => {
-        setIsLoading(false)
-        console.log('Failed to fetch data with error :' + error);
-      })
-  }
-
-  useEffect(() => {
-    //fetchData(searchParams)
+    // setIsLoading(true)
+    // await axios.get(BASE_URL + searchString)
+    //   .then((response) => {
+    //     setSearchData(response.data)
+    //     setIsLoading(false)
+    //   })
+    //   .catch((error) => {
+    //     setIsLoading(false)
+    //     console.log('Failed to fetch data with error :' + error);
+    //   })
 
     //Added below code for testing
     setIsLoading(true)
@@ -47,6 +43,10 @@ function App() {
       setSearchData(DUMMY_DATA)
     }, 2000)
 
+  }
+
+  useEffect(() => {
+    fetchData(searchParams)
   }, [searchParams])
 
   return (
@@ -62,8 +62,9 @@ function App() {
         <div style={{ width: '350px' }}>
           Sidebar
         </div>
-        <div style={{ width: '150vh', padding: '20px' }}>
+        <div style={{ width: '150vh', padding: '20px', height: '100vh', overflow: 'scroll' }}>
           <ItemsContainer
+            searchParams={searchParams}
             isLoading={isLoading}
             searchData={searchData} />
         </div>

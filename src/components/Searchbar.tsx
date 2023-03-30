@@ -33,7 +33,7 @@ const Searchbar = (props: ISearchParams) => {
     const { setSearchParams } = props
 
     const handleOnClick = () => {
-        setSearchParams(searchText.current)
+        setSearchParams(searchText.current.value)
         searchText.current.value = null
     }
 
