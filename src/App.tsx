@@ -62,9 +62,14 @@ function App() {
           <Sidebar />
         </div>
         <div style={{ width: "150vh", padding: "20px", height: "200px" }}>
-          <ItemsContainer isLoading={isLoading} searchData={searchData} />
+          <ItemsContainer
+            isLoading={isLoading}
+            searchData={searchData}
+            searchParams={searchParams}
+          />
         </div>
       </div>
+      <Footer />
     </>
   );
 }
