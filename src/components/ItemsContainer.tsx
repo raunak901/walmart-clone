@@ -38,6 +38,7 @@ const ItemsContainer: React.FC<IItemsContainerProps> = (props) => {
           &nbsp;&nbsp;<span>Loading...</span>
         </Box>
       )}
+      {!isLoading && searchData.length === 0 && <div style={{ display: 'flex', justifyContent: 'center' }}>No results found!</div>}
       {!isLoading && (
         <>
           {searchParams && searchParams.length !== 0 && (

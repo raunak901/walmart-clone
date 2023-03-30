@@ -1,3 +1,4 @@
+import Button from "@mui/material/Button";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.css";
@@ -41,6 +42,12 @@ function App() {
     };
   }, [searchParams]);
 
+  const buttonStyles = {
+    color: 'rgb(2,113,220)',
+    borderRadius: 9999,
+    marginBottom: 2
+  }
+
   return (
     <>
       <div
@@ -48,12 +55,39 @@ function App() {
           backgroundColor: "rgb(2,113,220)",
           height: "auto",
           display: "flex",
-          justifyContent: "center",
-          padding: "25px",
+          justifyContent: "space-around",
+          paddingTop: 10
         }}
       >
+        <div style={{ display: 'flex' }}>
+          <Button onClick={() => window.location.reload()} sx={{ ...buttonStyles }}>
+            <img style={{ height: '48px', width: 'auto' }} src='/logo.png' alt='logo' />
+          </Button>
+          <Button sx={{ ...buttonStyles }}>
+            <img style={{ height: '48px', width: 'auto' }} src='/logo1.png' alt='logo1' />
+          </Button>
+          <Button sx={{ ...buttonStyles }}>
+            <img style={{ height: '48px', width: 'auto' }} src='/logo2.png' alt='logo2' />
+          </Button>
+        </div>
+
+
         <Searchbar setSearchParams={setSearchParams} />
+
+        <div style={{ display: 'flex' }}>
+          <Button sx={{ ...buttonStyles, paddingTop: 2 }}>
+            <img style={{ height: '48px', width: 'auto' }} src='/logo3.png' alt='logo4' />
+          </Button>
+          <Button sx={{ ...buttonStyles, paddingTop: 2 }}>
+            <img style={{ height: '48px', width: 'auto' }} src='/logo4.png' alt='logo4' />
+          </Button>
+          <Button sx={{ ...buttonStyles }}>
+            <img style={{ height: '48px', width: 'auto' }} src='/logo5.png' alt='logo5' />
+          </Button>
+        </div>
+
       </div>
+
       <div className="sub-navigation">
         <SubNavigation />
       </div>
@@ -61,7 +95,7 @@ function App() {
         <div style={{ width: "350px" }}>
           <Sidebar />
         </div>
-        <div style={{ width: "150vh", padding: "20px", height: "200px" }}>
+        <div style={{ width: "150vh", padding: "20px", height: "100vh" }}>
           <ItemsContainer
             isLoading={isLoading}
             searchData={searchData}

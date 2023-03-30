@@ -20,7 +20,7 @@ const buttonStyle = {
     borderStyle: 'none',
     backgroundColor: '#ffc220',
     left: 562,
-    top: 2
+    top: 14
 }
 
 interface ISearchParams {
@@ -39,7 +39,7 @@ const Searchbar = (props: ISearchParams) => {
 
     return (
         <>
-            <div style={{ display: 'flex', position: 'relative' }}>
+            <div style={{ display: 'flex', position: 'relative', paddingTop: 12 }}>
                 <input
                     type='search'
                     ref={searchText}
