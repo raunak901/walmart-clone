@@ -15,3 +15,7 @@ export interface ISidebarContentItem {
   title: string;
   info?: string;
 }
+
+export interface ISubNavigationItem {
+  title: string;
+}

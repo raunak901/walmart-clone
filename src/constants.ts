@@ -1,4 +1,8 @@
-import { IResponse, ISidebarContentItem } from "./interfaces";
+import {
+  IResponse,
+  ISidebarContentItem,
+  ISubNavigationItem,
+} from "./interfaces";
 
 export const BASE_URL = "";
 
@@ -139,4 +143,15 @@ export const DUMMY_SIDEBAR_ITEMS: Array<ISidebarContentItem> = [
   { title: "retailer" },
   { title: "gifting" },
   { title: "shop my store" },
+];
+
+export const DUMMY_SUB_NAVIGATION_LINKS: Array<ISubNavigationItem> = [
+  { title: "deals" },
+  { title: "easter" },
+  { title: "grocery & essentials" },
+  { title: "home" },
+  { title: "tech" },
+  { title: "fashion" },
+  { title: "auto" },
+  { title: "walmart+" },
 ];

@@ -4,6 +4,7 @@ import "./App.css";
 import ItemsContainer from "./components/ItemsContainer";
 import Searchbar from "./components/Searchbar";
 import Sidebar from "./components/SideBar";
+import SubNavigation from "./components/SubNavigation";
 import { BASE_URL, DUMMY_DATA } from "./constants";
 import { IResponse } from "./interfaces";
 
@@ -52,13 +53,9 @@ function App() {
       >
         <Searchbar setSearchParams={setSearchParams} />
       </div>
-      <div
-        style={{
-          backgroundColor: "rgb(2,113,220)",
-          marginTop: "1px",
-          height: "40px",
-        }}
-      ></div>
+      <div className="sub-navigation">
+        <SubNavigation />
+      </div>
       <div style={{ display: "flex" }}>
         <div style={{ width: "350px" }}>
           <Sidebar />
