@@ -11,16 +11,17 @@ import { BASE_URL, DUMMY_DATA } from "./constants";
 import { IResponse } from "./interfaces";
 
 function App() {
-  const [searchParams, setSearchParams] = useState("");
+  const [searchParams, setSearchParams] = useState('');
   const [searchData, setSearchData] = useState<Array<IResponse>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   function fetchData(searchString: string) {
+    let searchParams = searchString.trim().length > 0 ? '?search=' + searchString : ''
     setIsLoading(true);
     axios
-      .get(BASE_URL + searchString)
+      .get(BASE_URL + searchParams)
       .then((response) => {
-        setSearchData(response.data);
+        setSearchData(response.data.msg);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -30,16 +31,16 @@ function App() {
   }
 
   useEffect(() => {
-    //Added below code for testing
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      setSearchData(DUMMY_DATA);
-    }, 500);
-
-    return () => {
-      clearTimeout(timer);
-    };
+    fetchData(searchParams)
+    // //Added below code for testing
+    // setIsLoading(true);
+    // const timer = setTimeout(() => {
+    //   setIsLoading(false);
+    //   setSearchData(DUMMY_DATA);
+    // }, 500);
+    // return () => {
+    //   clearTimeout(timer);
+    // };
   }, [searchParams]);
 
   const buttonStyles = {
@@ -48,6 +49,12 @@ function App() {
     marginBottom: 2
   }
 
+  const buttonStyles1 = {
+    backgroundColor: 'rgb(241,241,242)',
+    color: 'black',
+    borderRadius: 9999,
+    borderStyle: 'none'
+  }
   return (
     <>
       <div
@@ -91,6 +98,11 @@ function App() {
       <div className="sub-navigation">
         <SubNavigation />
       </div>
+      {/* <div style={{ borderBottom: 'grey solid 1px', padding: 20, display: 'flex', gap: 10 }}>
+        <Button sx={{ ...buttonStyles1 }} variant="outlined">Brand</Button>
+        <Button sx={{ ...buttonStyles1 }} variant="outlined">Price</Button>
+        <Button sx={{ ...buttonStyles1 }} variant="outlined">In-store</Button>
+      </div> */}
       <div style={{ display: "flex" }}>
         <div style={{ width: "350px" }}>
           <Sidebar />

@@ -29,12 +29,12 @@ interface ISearchParams {
 
 const Searchbar = (props: ISearchParams) => {
 
-    const searchText = useRef<any>(null)
+    const searchText = useRef<any>('')
     const { setSearchParams } = props
 
     const handleOnClick = () => {
         setSearchParams(searchText.current.value)
-        searchText.current.value = null
+        searchText.current.value = ''
     }
 
     return (
