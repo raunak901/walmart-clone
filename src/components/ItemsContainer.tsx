@@ -1,28 +1,39 @@
-import { IReponse } from '../App'
-import Item from './Item'
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import Item from "./Item";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import { IResponse } from "../interfaces";
 
-interface IProps {
-    searchData: IReponse[]
-    isLoading: boolean
+interface IItemsContainerProps extends React.PropsWithChildren {
+  searchData: IResponse[];
+  isLoading: boolean;
 }
 
-const ItemsContainer = (props: IProps) => {
+const ItemsContainer: React.FC<IItemsContainerProps> = (props) => {
+  const { searchData, isLoading } = props;
 
-    const { searchData, isLoading } = props
+  return (
+    <div>
+      {isLoading && (
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress />
+        </Box>
+      )}
+      {!isLoading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: 20,
+          }}
+        >
+          {searchData.map((item) => {
+            return <Item key={item.id} item={item} />;
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
 
-    return (
-        <>
-            {isLoading && <Box sx={{ display: 'flex' }}> <CircularProgress /></Box>}
-            {!isLoading &&
-                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
-                    {searchData.map((item: IReponse) => {
-                        return <Item key={item.id} item={item} />
-                    })}
-                </div>}
-        </>
-    )
-}
-
-export default ItemsContainer
+export default ItemsContainer;
