@@ -1,7 +1,10 @@
 import { IReponse } from '../App'
 import Item from './Item'
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress'
+import Box from '@mui/material/Box'
+import Pagination from '@mui/material/Pagination'
+import { useState } from 'react'
+import React from 'react'
 
 interface IProps {
     searchParams: string
@@ -12,6 +15,14 @@ interface IProps {
 const ItemsContainer = (props: IProps) => {
 
     const { searchParams, searchData, isLoading } = props
+    const totalPages = Math.ceil(searchData.length / 12)
+    const [page, setPage] = useState<number>(1)
+
+    const handleOnPageChange = (event: React.ChangeEvent<any>, page: number) => {
+        window.scrollTo(0, 0)
+        document.getElementById('container')?.scrollTo(0, 0)
+        setPage(page)
+    }
 
     return (
         <>
@@ -26,9 +37,16 @@ const ItemsContainer = (props: IProps) => {
                     }
 
                     <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', gap: 20, padding: 20 }}>
-                        {searchData.map((item: IReponse) => {
+                        {searchData.slice(page * 12 - 12, page * 12).map((item: IReponse) => {
                             return <Item key={item.id} item={item} />
                         })}
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'center', padding: 50 }}>
+                        <Pagination
+                            variant="outlined"
+                            color="primary"
+                            onChange={handleOnPageChange}
+                            count={totalPages} />
                     </div>
                 </>}
         </>

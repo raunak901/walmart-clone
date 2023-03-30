@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
+import Footer from './components/Footer';
 import ItemsContainer from './components/ItemsContainer';
 import Searchbar from './components/Searchbar';
 import { BASE_URL, DUMMY_DATA } from './constants';
@@ -62,14 +63,14 @@ function App() {
         <div style={{ width: '350px' }}>
           Sidebar
         </div>
-        <div style={{ width: '150vh', padding: '20px', height: '100vh', overflow: 'scroll' }}>
+        <div id='container' style={{ width: '150vh', padding: '20px', height: '100vh', overflow: 'scroll' }}>
           <ItemsContainer
             searchParams={searchParams}
             isLoading={isLoading}
             searchData={searchData} />
         </div>
       </div>
-
+      <Footer />
     </div>
   );
 }

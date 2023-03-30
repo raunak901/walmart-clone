@@ -115,7 +115,7 @@ export const DUMMY_DATA: IReponse[] = [
     {
         id: "10",
         type: "T-Shirts",
-        name: "Nike Men's Short Sleeve Logo Swoosh Printed Active T-Shirt Grey M",
+        name: "Nike Men's Short Sleeve Logo Swoosh Printed Active T-Shirt Grey M FIRST",
         brand: "Nike",
         averageRating: 4.8,
         manufacturerName: "Nike",
@@ -151,7 +151,7 @@ export const DUMMY_DATA: IReponse[] = [
     {
         id: "13",
         type: "T-Shirts",
-        name: "Nike Men's Short Sleeve Logo Swoosh Printed Active T-Shirt Grey M",
+        name: "Nike Men's Short Sleeve Logo Swoosh Printed Active T-Shirt Grey M SECOND",
         brand: "Nike",
         averageRating: 4.8,
         manufacturerName: "Nike",
@@ -307,7 +307,7 @@ export const DUMMY_DATA: IReponse[] = [
     {
         id: "26",
         type: "T-Shirts",
-        name: "Nike Men's Short Sleeve Logo Swoosh Printed Active T-Shirt Grey M",
+        name: "Nike Men's Short Sleeve Logo Swoosh Printed Active T-Shirt Grey M Last",
         brand: "Nike",
         averageRating: 4.8,
         manufacturerName: "Nike",
