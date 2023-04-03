@@ -1,6 +1,4 @@
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import Rating from "@mui/material/Rating";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { IResponse } from "../interfaces";
 
@@ -10,10 +8,6 @@ interface IItemContainerProps {
 
 const Item: React.FC<IItemContainerProps> = ({ item }) => {
   const { name, thumbnailUrl, price } = item;
-
-  function randomNumber(min: number, max: number) {
-    return Math.random() * (max - min) + min;
-  }
 
   return (
     <div
@@ -56,17 +50,6 @@ const Item: React.FC<IItemContainerProps> = ({ item }) => {
         <br />
         <div style={{ maxWidth: "200px" }}>{name}</div>
       </div>
-      <Box sx={{ "& > legend": { mt: 2 }, padding: 1 }}>
-        <Rating
-          size="small"
-          sx={{ color: "black" }}
-          value={randomNumber(3, 5)}
-        />
-        &nbsp;&nbsp;
-        <span style={{ fontSize: 14, color: "#888" }}>
-          {randomNumber(560, 1700).toFixed(0)}
-        </span>
-      </Box>
     </div>
   );
 };

@@ -356,7 +356,7 @@ export const DUMMY_DATA: IResponse[] = [
       "https://i5.walmartimages.com/asr/1969d9af-0b06-4787-b8b6-19a0ebfb8bbb.55694218f1c10e81991eab9dcf09150b.jpeg",
     price: 22.21,
     currencyUnit: "USD",
-  }
+  },
 ];
 
 export const DUMMY_SIDEBAR_ITEMS: Array<ISidebarContentItem> = [
@@ -393,3 +393,5 @@ export const DUMMY_SUB_NAVIGATION_LINKS: Array<ISubNavigationItem> = [
   { title: "Auto" },
   { title: "Walmart+" },
 ];
+
+export const ITEMS_PER_PAGE = 20;

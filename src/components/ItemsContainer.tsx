@@ -2,8 +2,9 @@ import Item from "./Item";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { IResponse } from "../interfaces";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Pagination } from "@mui/material";
+import { ITEMS_PER_PAGE } from "../constants";
 
 interface IItemsContainerProps extends React.PropsWithChildren {
   searchData: IResponse[];
@@ -12,13 +13,25 @@ interface IItemsContainerProps extends React.PropsWithChildren {
 }
 
 const ItemsContainer: React.FC<IItemsContainerProps> = (props) => {
-  const { searchParams, searchData, isLoading } = props;
-  const totalPages = Math.ceil(searchData.length / 12);
-  const [page, setPage] = useState<number>(1);
+  const { searchData, isLoading } = props;
 
-  const handleOnPageChange = (event: React.ChangeEvent<any>, page: number) => {
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(searchData.length / ITEMS_PER_PAGE);
+
+  const startIndex = (page - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+
+  console.log(startIndex, endIndex);
+
+  const updatedSearchData = searchData.slice(startIndex, endIndex);
+
+  useEffect(() => {
+    setPage(1);
+  }, [searchData]);
+
+  const handleOnPageChange = (_event: React.ChangeEvent<any>, page: number) => {
     window.scrollTo(0, 0);
-    document.getElementById("container")?.scrollTo(0, 0);
+    document.getElementById("items-container")?.scrollTo(0, 0);
     setPage(page);
   };
 
@@ -38,30 +51,13 @@ const ItemsContainer: React.FC<IItemsContainerProps> = (props) => {
           &nbsp;&nbsp;<span>Loading...</span>
         </Box>
       )}
-      {!isLoading && searchData.length === 0 && <div style={{ display: 'flex', justifyContent: 'center' }}>No results found!</div>}
+      {!isLoading && searchData.length === 0 && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          No results found!
+        </div>
+      )}
       {!isLoading && (
         <>
-          {searchParams && searchParams.length !== 0 && (
-            <div
-              style={{
-                padding: 20,
-                borderTop: "grey solid 1px",
-                borderBottom: "grey solid 1px",
-              }}
-            >
-              <strong
-                style={{ fontFamily: "serif", fontSize: 20, marginBottom: 30 }}
-              >
-                Results for "{searchParams}"
-              </strong>
-              <span style={{ color: "#888" }}>(1000+)</span>
-              <br />
-              <span style={{ fontFamily: "serif", fontSize: 15 }}>
-                Price when purchased online
-              </span>
-            </div>
-          )}
-
           <div
             style={{
               display: "flex",
@@ -71,14 +67,17 @@ const ItemsContainer: React.FC<IItemsContainerProps> = (props) => {
               padding: 20,
             }}
           >
-            {searchData
-              .slice(page * 12 - 12, page * 12)
-              .map((item: IResponse) => {
-                return <Item key={item.id} item={item} />;
-              })}
+            {updatedSearchData.map((item) => {
+              return <Item key={item.id} item={item} />;
+            })}
           </div>
           <div
-            style={{ display: "flex", justifyContent: "center", padding: 50 }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: 50,
+            }}
           >
             <Pagination
               variant="outlined"

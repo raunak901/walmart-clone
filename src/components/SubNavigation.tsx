@@ -40,16 +40,18 @@ const SubNavigation: React.FC<{}> = (_props) => {
     <ul>
       {DUMMY_SUB_NAVIGATION_LINKS.map(({ title }) => (
         <li key={uuidv4()}>
-          <a href="reload" style={{ fontSize: 13 }}><strong>{title}</strong></a>
+          <a href="reload" style={{ fontSize: 13 }}>
+            <strong>{title}</strong>
+          </a>
         </li>
       ))}
     </ul>
   );
   return (
-    <>
+    <div className="sub-navigation">
       <div>{question}</div>
       <div className="nav">{address}</div>
-    </>
+    </div>
   );
 };
 

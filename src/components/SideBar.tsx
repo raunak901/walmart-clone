@@ -47,7 +47,7 @@ const Sidebar: React.FC<ISidebar> = (_props) => {
     <div
       style={{
         backgroundColor: "gray",
-        height: "100vh",
+        height: "90vh",
         width: "100%",
         overflow: "auto",
         overflowX: "hidden",
