@@ -3,7 +3,7 @@ export interface IResponse {
   type: string;
   name: string;
   brand: string;
-  averageRating: number;
+  averageRating: number | null;
   shortDescription: string;
   manufacturerName: string;
   thumbnailUrl: string;

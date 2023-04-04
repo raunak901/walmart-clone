@@ -21,8 +21,6 @@ const ItemsContainer: React.FC<IItemsContainerProps> = (props) => {
   const startIndex = (page - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
 
-  console.log(startIndex, endIndex);
-
   const updatedSearchData = searchData.slice(startIndex, endIndex);
 
   useEffect(() => {

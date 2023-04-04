@@ -1,13 +1,14 @@
 import Button from "@mui/material/Button";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { IResponse } from "../interfaces";
+import { Box, Rating } from "@mui/material";
 
 interface IItemContainerProps {
   item: IResponse;
 }
 
 const Item: React.FC<IItemContainerProps> = ({ item }) => {
-  const { name, thumbnailUrl, price } = item;
+  const { name, thumbnailUrl, price, averageRating } = item;
 
   return (
     <div
@@ -50,6 +51,14 @@ const Item: React.FC<IItemContainerProps> = ({ item }) => {
         <br />
         <div style={{ maxWidth: "200px" }}>{name}</div>
       </div>
+      <Box sx={{ "& > legend": { mt: 2 } }}>
+        <Rating
+          size="small"
+          sx={{ color: "black" }}
+          readOnly={true}
+          value={averageRating || 0}
+        />
+      </Box>
     </div>
   );
 };
