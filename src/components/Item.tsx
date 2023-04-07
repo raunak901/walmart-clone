@@ -8,7 +8,7 @@ interface IItemContainerProps {
 }
 
 const Item: React.FC<IItemContainerProps> = ({ item }) => {
-  const { name, thumbnailUrl, price, averageRating } = item;
+  const { name, thumbnailUrl, price, averageRating, numberOfPurchases } = item;
 
   return (
     <div
@@ -58,6 +58,10 @@ const Item: React.FC<IItemContainerProps> = ({ item }) => {
           readOnly={true}
           value={averageRating || 0}
         />
+        &nbsp;&nbsp;
+        <span style={{ fontSize: 14, color: "#888" }}>
+          {numberOfPurchases || 0}
+        </span>
       </Box>
     </div>
   );

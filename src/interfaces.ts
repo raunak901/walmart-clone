@@ -9,6 +9,7 @@ export interface IResponse {
   thumbnailUrl: string;
   price: number;
   currencyUnit: string;
+  numberOfPurchases?: string;
 }
 
 export interface ISidebarContentItem {

@@ -6,11 +6,14 @@ import ItemsContainer from "./components/ItemsContainer";
 import Searchbar from "./components/Searchbar";
 import Sidebar from "./components/SideBar";
 import SubNavigation from "./components/SubNavigation";
-import { BASE_URL } from "./constants";
+import { BASE_URL, randomNumber } from "./constants";
 import { IResponse } from "./interfaces";
 import Navigation from "./components/Navigation";
+import { useAppDispatch } from "./redux/hooks";
+import { updateSearchQuery } from "./redux/slices/searchedQuerySlice";
 
 const App: React.FC<{}> = () => {
+  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useState("");
   const [searchData, setSearchData] = useState<Array<IResponse>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -25,8 +28,22 @@ const App: React.FC<{}> = () => {
     axios
       .get(BASE_URL + formattedSearchParams)
       .then((response) => {
-        setSearchData(response.data.msg);
+        const items = response.data.msg as Array<IResponse>;
+
+        // Add hardcoded number of purchases
+        const updatedItems = items.map((item) => ({
+          ...item,
+          numberOfPurchases: randomNumber(500, 1700),
+        }));
+
+        setSearchData(updatedItems);
         setIsLoading(false);
+        dispatch(
+          updateSearchQuery({
+            query: searchParams,
+            resultsCount: response?.data?.msg?.length || 0,
+          })
+        );
       })
       .catch((error) => {
         setIsLoading(false);
@@ -70,11 +87,7 @@ const App: React.FC<{}> = () => {
             overflowX: "hidden",
           }}
         >
-          <ItemsContainer
-            isLoading={isLoading}
-            searchData={searchData}
-            searchParams={searchParams}
-          />
+          <ItemsContainer isLoading={isLoading} searchData={searchData} />
         </div>
       </div>
       <Footer />

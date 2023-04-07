@@ -9,6 +9,7 @@ import MuiAccordionSummary, {
 import React from "react";
 import { styled } from "@mui/material";
 import { DUMMY_SIDEBAR_ITEMS } from "../constants";
+import { nanoid } from "@reduxjs/toolkit";
 
 interface ISidebar extends React.PropsWithChildren {}
 
@@ -54,7 +55,7 @@ const Sidebar: React.FC<ISidebar> = (_props) => {
       }}
     >
       {DUMMY_SIDEBAR_ITEMS.map(({ title }) => (
-        <Accordion>
+        <Accordion key={nanoid()}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"

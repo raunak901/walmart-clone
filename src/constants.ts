@@ -394,4 +394,8 @@ export const DUMMY_SUB_NAVIGATION_LINKS: Array<ISubNavigationItem> = [
   { title: "Walmart+" },
 ];
 
-export const ITEMS_PER_PAGE = 20;
+export const ITEMS_PER_PAGE = 12;
+
+export function randomNumber(min: number, max: number) {
+  return (Math.random() * (max - min) + min).toFixed(0);
+}
